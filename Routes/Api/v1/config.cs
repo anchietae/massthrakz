@@ -6,7 +6,7 @@ public static class Config
     {
         app.MapGet("/api/v1/config", () =>
         {
-            return Results.Ok(new Legacy_ConfigJSON(refilc_uinid: Guid.NewGuid()));
+            return Results.Json(new Legacy_ConfigJSON(refilc_uinid: Guid.NewGuid()), AppModels.Default.Legacy_ConfigJSON);
         });
         return app;
     }

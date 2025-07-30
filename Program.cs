@@ -1,6 +1,8 @@
 using massthrakz.Routes.Api;
 using massthrakz.Routes;
 using massthrakz.Routes.Api.v1;
+using massthrakz.Routes.Api.v2;
+using massthrakz.Shared;
 
 namespace massthrakz;
 public class Program
@@ -14,6 +16,7 @@ public class Program
         {
             options.SerializerOptions.TypeInfoResolverChain.Insert(0, AppModels.Default);
         });
+        builder.Services.AddSingleton<NewsService>();
         
         var app = builder.Build();
         app.UseHttpsRedirection();
@@ -34,6 +37,12 @@ public class Program
         */
         app.MapHealth();
         app.Legacy_Config();
+        
+        var newsService = app.Services.GetRequiredService<NewsService>();
+        newsService.LoadNews();
+        app.Legacy_News();
+        app.News();
+        
         
         // this should always be on the bottom
         app.MapRedirects();

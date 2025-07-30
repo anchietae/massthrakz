@@ -6,10 +6,7 @@ public static class Health
     // but most of the apis has this for some reason, idk
     public static IEndpointRouteBuilder MapHealth(this WebApplication app)
     {
-        app.MapGet("/api/health", () =>
-        {
-            return Results.Ok(new HealthStatus(true));
-        });
+        app.MapGet("/api/health", () => Results.Json(new HealthStatus(true), AppModels.Default.HealthStatus));
         return app;
     }
 }
