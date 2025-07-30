@@ -1,4 +1,6 @@
 using massthrakz.Routes.Api;
+using massthrakz.Routes;
+using massthrakz.Routes.Api.v1;
 
 namespace massthrakz;
 public class Program
@@ -6,6 +8,7 @@ public class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateSlimBuilder(args);
+        builder.Services.Configure<AppSettings>(builder.Configuration);
         
         builder.Services.ConfigureHttpJsonOptions(options =>
         {
@@ -30,7 +33,10 @@ public class Program
                   some unbranded 16GiB DDR4 - 3200MT/s (2 slots) SODIMM, Synchronous
         */
         app.MapHealth();
+        app.Legacy_Config();
         
+        // this should always be on the bottom
+        app.MapRedirects();
         Console.WriteLine("massthrakz finished bootstrapping");
         app.Run();
     }
