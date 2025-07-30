@@ -27,6 +27,19 @@ public record LegacyNewsResponse(
     string expire_date
 );
 
+public record LegacyDownloadUrl(
+    string android,
+    string ios
+);
+
+public record LegacyVersionsRes(
+    LegacyDownloadUrl download_url,
+    bool is_latest,
+    bool must_update,
+    List<string> @new,
+    string version
+);
+
 [JsonSerializable(typeof(HealthStatus))]
 [JsonSerializable(typeof(HealthStatus[]))]
 [JsonSerializable(typeof(Legacy_ConfigJSON))]
@@ -34,6 +47,11 @@ public record LegacyNewsResponse(
 [JsonSerializable(typeof(List<NewsResponse>))]
 [JsonSerializable(typeof(LegacyNewsResponse))]
 [JsonSerializable(typeof(List<LegacyNewsResponse>))]
+[JsonSerializable(typeof(LegacyDownloadUrl))]
+[JsonSerializable(typeof(LegacyVersionsRes))]
+[JsonSerializable(typeof(List<LegacyVersionsRes>))]
+
+
 public partial class AppModels : JsonSerializerContext
 {
 }
