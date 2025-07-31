@@ -2,6 +2,7 @@ using massthrakz.Routes.Api;
 using massthrakz.Routes;
 using massthrakz.Routes.Api.legacy;
 using massthrakz.Routes.Api.v1;
+using massthrakz.Routes.Api.web;
 using massthrakz.Shared;
 
 namespace massthrakz;
@@ -48,6 +49,7 @@ public static class Program
         app.Legacy_News();
         app.News();
         app.Legacy_Version();
+        app.Web_Version();
         
         // this should always be on the bottom
         app.MapRedirects();
