@@ -39,6 +39,7 @@ public static class Program
                   PC711 NVMe SK hynix 512GB - PCIe 3.0 4x
                   some unbranded 16GiB DDR4 - 3200MT/s (2 slots) SODIMM, Synchronous
         */
+        app.RootPath();
         app.MapHealth();
         app.Legacy_Config();
         

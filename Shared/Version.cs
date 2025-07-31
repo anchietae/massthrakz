@@ -12,11 +12,11 @@ public class VersionService(IHttpClientFactory httpClientFactory, IOptions<AppSe
 
     public Task StartAsync(CancellationToken cancellationToken)
     {
-        _timer = new Timer(DoWork, null, TimeSpan.Zero, TimeSpan.FromHours(1));
+        _timer = new Timer(DoWorkWrapper, null, TimeSpan.Zero, TimeSpan.FromHours(1));
         return Task.CompletedTask;
     }
 
-    private async void DoWork(object? state)
+    private async Task DoWork()
     {
         if (_appSettings.VersionSources == null)
         {
@@ -42,6 +42,18 @@ public class VersionService(IHttpClientFactory httpClientFactory, IOptions<AppSe
             }
         }
     }
+    
+    private async void DoWorkWrapper(object? state)
+    {
+        try
+        {
+            await DoWork();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error in DoWork see message: {ex.Message}");
+        }
+    }
 
     public List<Release>? GetReleases(string name)
     {
@@ -58,5 +70,6 @@ public class VersionService(IHttpClientFactory httpClientFactory, IOptions<AppSe
     public void Dispose()
     {
         _timer?.Dispose();
+        GC.SuppressFinalize(this);
     }
 }
