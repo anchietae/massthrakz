@@ -3,8 +3,8 @@ namespace massthrakz.Shared;
 
 public class NewsService
 {
-    private List<NewsResponse> _cachedNews = new List<NewsResponse>();
-    private static readonly string[] Platforms = { "android", "ios", "web", "all" };
+    private readonly List<NewsResponse> _cachedNews = [];
+    private static readonly string[] Platforms = ["android", "ios", "web", "all"];
 
     public void LoadNews()
     {
@@ -27,7 +27,7 @@ public class NewsService
                 if (newsItem == null) continue;
                 if (newsItem.platforms == null || !newsItem.platforms.All(p => Platforms.Contains(p)))
                 {
-                    newsItem = newsItem with { platforms = new List<string> { "all" } };
+                    newsItem = newsItem with { platforms = ["all"] };
                 }
 
                 _cachedNews.Add(newsItem);
@@ -51,8 +51,8 @@ public class NewsService
         return _cachedNews.Select(item =>
         {
             var jsonString = JsonSerializer.Serialize(item, AppModels.Default.NewsResponse);
-            string id = GenerateHash.Hash(jsonString).ToString();
-            string expireDateString = item.expiry_date;
+            var id = GenerateHash.Hash(jsonString).ToString();
+            var expireDateString = item.expiry_date;
 
             return new LegacyNewsResponse(
                 id, title: item.title, content: item.content, link: item.button_link ?? "https://firka.app",

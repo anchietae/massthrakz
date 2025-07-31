@@ -6,10 +6,7 @@
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "api/v1/news",
-      "applicationUrl": "http://localhost:5169",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      "applicationUrl": "http://localhost:5169"
     }
   }
 }

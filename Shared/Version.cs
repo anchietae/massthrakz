@@ -1,6 +1,62 @@
-﻿namespace massthrakz.Shared;
+﻿using System.Collections.Concurrent;
+using Microsoft.Extensions.Options;
 
-public class Version
+namespace massthrakz.Shared;
+
+public class VersionService(IHttpClientFactory httpClientFactory, IOptions<AppSettings> appSettings)
+    : IHostedService, IDisposable
 {
-    
+    private readonly AppSettings _appSettings = appSettings.Value;
+    private readonly ConcurrentDictionary<string, List<Release>> _cachedReleases = new();
+    private Timer? _timer;
+
+    public Task StartAsync(CancellationToken cancellationToken)
+    {
+        _timer = new Timer(DoWork, null, TimeSpan.Zero, TimeSpan.FromHours(1));
+        return Task.CompletedTask;
+    }
+
+    private async void DoWork(object? state)
+    {
+        if (_appSettings.VersionSources == null)
+        {
+            Console.WriteLine("VersionSources is null");
+            return;
+        }
+
+        var client = httpClientFactory.CreateClient();
+        client.DefaultRequestHeaders.Add("User-Agent", "massthrakz");
+        
+        foreach (var (name, url) in _appSettings.VersionSources)
+        {
+            try
+            {
+                var releases = await client.GetFromJsonAsync(url, AppModels.Default.ListRelease);
+                if (releases == null) continue;
+                _cachedReleases[name] = releases;
+                Console.WriteLine($"Loaded {releases.Count} releases for {name}");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine($"Error fetching releases from {url}");
+            }
+        }
+    }
+
+    public List<Release>? GetReleases(string name)
+    {
+        _cachedReleases.TryGetValue(name, out var releases);
+        return releases;
+    }
+
+    public Task StopAsync(CancellationToken cancellationToken)
+    {
+        _timer?.Change(Timeout.Infinite, 0);
+        return Task.CompletedTask;
+    }
+
+    public void Dispose()
+    {
+        _timer?.Dispose();
+    }
 }

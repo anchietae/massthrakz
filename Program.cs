@@ -5,7 +5,7 @@ using massthrakz.Routes.Api.v1;
 using massthrakz.Shared;
 
 namespace massthrakz;
-public class Program
+public static class Program
 {
     public static void Main(string[] args)
     {
@@ -17,6 +17,10 @@ public class Program
             options.SerializerOptions.TypeInfoResolverChain.Insert(0, AppModels.Default);
         });
         builder.Services.AddSingleton<NewsService>();
+        // version service thing, for endpoints
+        builder.Services.AddHttpClient();
+        builder.Services.AddHostedService<VersionService>();
+        builder.Services.AddSingleton<VersionService>(sp => sp.GetRequiredService<IEnumerable<IHostedService>>().OfType<VersionService>().First());
         
         var app = builder.Build();
         app.UseHttpsRedirection();
@@ -42,7 +46,7 @@ public class Program
         newsService.LoadNews();
         app.Legacy_News();
         app.News();
-        
+        app.Legacy_Version();
         
         // this should always be on the bottom
         app.MapRedirects();

@@ -50,8 +50,32 @@ public record LegacyVersionsRes(
 [JsonSerializable(typeof(LegacyDownloadUrl))]
 [JsonSerializable(typeof(LegacyVersionsRes))]
 [JsonSerializable(typeof(List<LegacyVersionsRes>))]
-
-
+[JsonSerializable(typeof(Release))]
+[JsonSerializable(typeof(List<Release>))]
 public partial class AppModels : JsonSerializerContext
 {
+}
+
+public class Release
+{
+    [JsonPropertyName("tag_name")]
+    public required string TagName { get; set; }
+
+    [JsonPropertyName("name")]
+    public required string Name { get; set; }
+
+    [JsonPropertyName("body")]
+    public required string Body { get; set; }
+
+    [JsonPropertyName("assets")]
+    public required List<Asset> Assets { get; set; }
+}
+
+public class Asset
+{
+    [JsonPropertyName("name")]
+    public required string Name { get; set; }
+
+    [JsonPropertyName("browser_download_url")]
+    public required string BrowserDownloadUrl { get; set; }
 }
