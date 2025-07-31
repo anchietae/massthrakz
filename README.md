@@ -1,7 +1,7 @@
 # <img src="https://git.anchietae.cc/repo-avatars/ae9d4e114ed8458fc02025c395cb97616f641f9262aebcf8c2737df494807174" width="100px"> MassTHrakz!? *[ejtsd: massztrakz]*
 > ^ Mass, mert **masszív** request handlingra képes *kibaszott alacsony response timeval*...
 
-*Kurva gyors* C# ASP.NET9.0 Coreban íródott API Szerver (kréta fejlesztők megirigyelnék)
+*Kurva gyors* C# ASP.NET9.0 Coreban íródott API Szerver (Kréta fejlesztők megirigyelnék) egy bizonyos projekt appjához és oldalához *(Igen, ez az oldalhoz kellő dolgokat is támogatja. Mondtam már párszor hogy nem várok...)*
 
 Literálisan azért írodott .NETben mert nem fogok fölöslegesen túlkomplikált (valakinek ez a szó ismerős lehet) borrow meg faszom tudja rendszerrel szarakodni rustban.
 > ^ Ja és ez dependency nélkül fut, ellentétben a rustos verzióval aminél 15 packaget kell használni hogy ugyanazt az élményt elérd (igen, megszámoltam)
