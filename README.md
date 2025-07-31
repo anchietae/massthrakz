@@ -1,23 +1,23 @@
-# MassTHrakz!? [ejtsd: massztrakz]
-> ^ mass, mert masszív. és tudjátok mi masszív még?...
+# MassTHrakz!? *[ejtsd: massztrakz]*
+> ^ Mass, mert **masszív** request handlingra képes *kibaszott alacsony response timeval*...
 
-C# ASP.NET9.0 Coreban íródott API Szerver (kréta fejlesztők megirigyelnék)
+*Kurva gyors* C# ASP.NET9.0 Coreban íródott API Szerver (kréta fejlesztők megirigyelnék)
+
+Literálisan azért írodott .NETben mert nem fogok fölöslegesen túlkomplikált (valakinek ez a szó ismerős lehet) borrow meg faszom tudja rendszerrel szarakodni rustban.
 
 ## Építés
-`dotnet build` - ez egy szimpla buildet hoz létre, ami nem optimalizált
+`dotnet build` - ez egy szimpla buildet hoz létre, ami nem *optimalizált*
 
-ha jobb teljesítmény kell, akkor építsd AOT-val
+ha jobb *teljesítmény* kell, akkor építsd *AOT*-val
 ```shell
 dotnet publish -c Release /p:PublishAOT=true
 ```
-^ ez jobban leoptimalizálja, ha a sima builder nem lenne elég gyors még neked
+^ ez jobban le*optimalizál*ja, ha a sima builder nem lenne elég *gyors* még neked
 
-ha az kell h full buildet kapj ami fut barhol akkor hasznald ezt:
+ha az kell h full buildet kapj ami fut barhol (ami linux) akkor hasznald ezt:
 ```shell
 dotnet publish --self-contained true -r linux-x64 -c Release /p:PublishAOT=true
 ```
-
-ajanlott linuxon epiteni mert ott van crossos native compile, unlike on windows
 
 ## Fejlesztés
 megfogod és routesben csinálsz egy új .cs fájlt, és követed az egyik kész routeban lévő kódot, utánna Program.cs-be beimportálod ahogyan a többi is van.
