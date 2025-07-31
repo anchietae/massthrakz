@@ -25,3 +25,5 @@ megfogod és routesben csinálsz egy új .cs fájlt, és követed az egyik kész
 ha új json objectet csinálsz, amit returnolni kéne, akkor modelt kell rá írnod, mivel trimming alatt a lehet működő kódod szétbaszódhat
 
 shared mappában van pár service ami kell pl newsloader, ami becacheli startupnal a hireket, version cucc, stb.
+
+ajánlott az ilyen letöltős/fs loaderes szarokat cachelni, hogy ne basszuk fölöslegesen a rezet.
