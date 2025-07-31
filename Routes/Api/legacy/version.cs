@@ -1,10 +1,10 @@
-﻿namespace massthrakz.Routes.Api.v1;
+﻿namespace massthrakz.Routes.Api.legacy;
 
 public static class Version
 {
     public static IEndpointRouteBuilder Legacy_Version(this WebApplication app)
     {
-        app.MapGet("/api/v1/version", () =>
+        app.MapGet("/api/legacy/version", () =>
         {
             
         });

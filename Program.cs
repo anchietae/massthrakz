@@ -1,7 +1,7 @@
 using massthrakz.Routes.Api;
 using massthrakz.Routes;
+using massthrakz.Routes.Api.legacy;
 using massthrakz.Routes.Api.v1;
-using massthrakz.Routes.Api.v2;
 using massthrakz.Shared;
 
 namespace massthrakz;
