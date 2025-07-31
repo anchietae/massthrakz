@@ -1,4 +1,4 @@
-# MassTHrakz!? *[ejtsd: massztrakz]*
+# <img src="https://git.anchietae.cc/repo-avatars/ae9d4e114ed8458fc02025c395cb97616f641f9262aebcf8c2737df494807174" width="100px"> MassTHrakz!? *[ejtsd: massztrakz]*
 > ^ Mass, mert **masszív** request handlingra képes *kibaszott alacsony response timeval*...
 
 *Kurva gyors* C# ASP.NET9.0 Coreban íródott API Szerver (kréta fejlesztők megirigyelnék)
