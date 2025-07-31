@@ -4,6 +4,7 @@
 *Kurva gyors* C# ASP.NET9.0 Coreban íródott API Szerver (kréta fejlesztők megirigyelnék)
 
 Literálisan azért írodott .NETben mert nem fogok fölöslegesen túlkomplikált (valakinek ez a szó ismerős lehet) borrow meg faszom tudja rendszerrel szarakodni rustban.
+> ^ Ja és ez dependency nélkül fut, ellentétben a rustos verzióval aminél 15 packaget kell használni hogy ugyanazt az élményt elérd (igen, megszámoltam)
 
 ## Építés
 `dotnet build` - ez egy szimpla buildet hoz létre, ami nem *optimalizált*
