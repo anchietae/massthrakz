@@ -17,7 +17,10 @@ public static class Program
         {
             options.SerializerOptions.TypeInfoResolverChain.Insert(0, AppModels.Default);
         });
+        // news
         builder.Services.AddSingleton<NewsService>();
+        // in memory cacher (1min), should be used on static/maybe static routes, but not always changing
+        builder.Services.AddMemoryCache();
         // version service thing, for endpoints
         builder.Services.AddHttpClient();
         builder.Services.AddHostedService<VersionService>();
@@ -44,6 +47,7 @@ public static class Program
         app.MapHealth();
         app.Legacy_Config();
         
+        // register newsservice globally
         var newsService = app.Services.GetRequiredService<NewsService>();
         newsService.LoadNews();
         app.Legacy_News();

@@ -48,7 +48,7 @@ public static class WebVersion
             return Results.Json(
                 new WebVersionModel(extensionVersion, appVersion: legacyVersion, ipaURL: ios, arm64URL: arm64,
                     armeabiURL: armeabi), AppModels.Default.WebVersionModel);
-        });
+        }).WithCache();
         return app;
     }
 }

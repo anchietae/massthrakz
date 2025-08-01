@@ -11,7 +11,7 @@ public static class Version
             if (releases == null || releases.Count == 0) return Results.NotFound();
 
             var latestRelease = releases.First();
-            
+
             var response = releases.Select(release =>
             {
                 var isLatest = release == latestRelease;
@@ -26,15 +26,15 @@ public static class Version
                     version: release.TagName
                 );
             }).ToList();
-            
+
             return Results.Json(response, AppModels.Default.ListLegacyVersionsRes);
-        });
+        }).WithCache();
 
         app.MapGet("/api/legacy/version/latest", (VersionService versionService) =>
         {
             var releases = versionService.GetReleases("legacy");
             if (releases == null || releases.Count == 0) return Results.NotFound();
-            
+
             var latest = releases.First();
 
             return Results.Json(new LegacyVersionsRes(
@@ -47,7 +47,7 @@ public static class Version
                 @new: [],
                 version: latest.TagName
             ), AppModels.Default.LegacyVersionsRes);
-        });
+        }).WithCache();
         return app;
     }
 }
