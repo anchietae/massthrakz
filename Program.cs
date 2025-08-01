@@ -17,6 +17,17 @@ public static class Program
         {
             options.SerializerOptions.TypeInfoResolverChain.Insert(0, AppModels.Default);
         });
+
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy(name: "AllowAllOrigins",
+                policy =>
+                {
+                    policy.WithOrigins("*")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+        });
         // news
         builder.Services.AddSingleton<NewsService>();
         // in memory cacher (1min), should be used on static/maybe static routes, but not always changing
@@ -27,7 +38,7 @@ public static class Program
         builder.Services.AddSingleton<VersionService>(sp => sp.GetRequiredService<IEnumerable<IHostedService>>().OfType<VersionService>().First());
         
         var app = builder.Build();
-        app.UseHttpsRedirection();
+        app.UseCors("AllowAllOrigins");
 
         /* dynamic routing won't work on aot publish
            but will work if you just build it without publishing it

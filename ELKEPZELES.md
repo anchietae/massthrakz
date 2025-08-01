@@ -20,3 +20,7 @@ ez helyett ugyan az lesz a guid-je a temanak es a jegy szineknek.
 > ^ not final look, de lehet hasonlo lesz, max a grade szinek kulon
 
 na most ha ezt csinalom akkor van ra esely h az appot is modifikalnom kell ami szar ugy, mindegy, remelhetoleg nem kell semmit csinalnom csak az apit normalisan megcsinalni
+
+ha jol emlekszem a sorrendre, akkor elsonek megprobal csinalni egy grade colort, ugyhogy azt ramban taroljuk 2 percig es addig tud vele kezdeni valamit vele a client\
+utanna kuld egy requestet amiben benn van mar a grade id es a tema szarsag, itt ezt interceptelni fogjuk a rammal, megnezzuk minden fasza-e es elmentjuk dbbe, rambol meg cleareljuk.\
+mivel nemtom mennyi ramot hasznalna egy ilyen request ezert lehet h ezzel lehet ddosolni, magyarul max 50 tema lehet egy idoben memoriaban, tobbit nem engedjuk
