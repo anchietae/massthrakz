@@ -8,7 +8,7 @@ using System.Text.Json.Serialization;
 
 public record HealthStatus(bool Live);
 
-public record Legacy_ConfigJSON(Guid refilc_uinid, string user_agent = "hu.ekreta.student/$0/$1/$2");
+public record LegacyConfigJson(Guid refilc_uinid, string user_agent = "hu.ekreta.student/$0/$1/$2");
 
 public record NewsResponse(
     string title,
@@ -71,7 +71,7 @@ public record WebVersionModel(
 
 
 [JsonSerializable(typeof(HealthStatus[]))]
-[JsonSerializable(typeof(Legacy_ConfigJSON))]
+[JsonSerializable(typeof(LegacyConfigJson))]
 [JsonSerializable(typeof(NewsResponse))]
 [JsonSerializable(typeof(List<NewsResponse>))]
 [JsonSerializable(typeof(LegacyNewsResponse))]

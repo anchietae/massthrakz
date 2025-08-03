@@ -27,7 +27,7 @@ public static class WebVersion
             }
             else
             {
-                var legacyLatest = legacy.First();
+                var legacyLatest = legacy[0];
                 legacyVersion = legacyLatest.TagName;
                 ios = legacyLatest.Assets.Find(a => a.Name.EndsWith(".ipa"))?.BrowserDownloadUrl ?? "";
                 arm64 = legacyLatest.Assets.Find(a => a.Name.Contains("arm64-v8a"))?.BrowserDownloadUrl ?? "";
@@ -41,7 +41,7 @@ public static class WebVersion
             }
             else
             {
-                var extensionLatest = extension.First();
+                var extensionLatest = extension[0];
                 extensionVersion = extensionLatest.TagName;
             }
 

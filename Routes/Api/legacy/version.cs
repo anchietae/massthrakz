@@ -10,7 +10,7 @@ public static class Version
             var releases = versionService.GetReleases("legacy");
             if (releases == null || releases.Count == 0) return Results.NotFound();
 
-            var latestRelease = releases.First();
+            var latestRelease = releases[0];
 
             var response = releases.Select(release =>
             {
@@ -35,7 +35,7 @@ public static class Version
             var releases = versionService.GetReleases("legacy");
             if (releases == null || releases.Count == 0) return Results.NotFound();
 
-            var latest = releases.First();
+            var latest = releases[0];
 
             return Results.Json(new LegacyVersionsRes(
                 new LegacyDownloadUrl(
