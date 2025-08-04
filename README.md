@@ -3,7 +3,7 @@
 
 *Kurva gyors* C# ASP.NET9.0 Coreban íródott API Szerver (Kréta fejlesztők megirigyelnék) egy bizonyos projekt appjához és oldalához *(Igen, ez az oldalhoz kellő dolgokat is támogatja. Mondtam már párszor hogy nem várok...)*
 
-Literálisan azért írodott .NETben mert nem fogok fölöslegesen túlkomplikált (valakinek ez a szó ismerős lehet) borrow meg faszom tudja rendszerrel szarakodni rustban.
+Literálisan azért írodott .NETben mert nem fogok fölöslegesen túlkomplikált (valakinek ez a szó ismerős lehet) borrow meg faszom tudja rendszerrel szarakodni rustban. Az élet túl rövid ahhoz, hogy az ember a fordítót elégítse csak ki. Ez a kód az irányításról szól és nem a compilerröl.
 > ^ Ja és ez dependency nélkül fut, ellentétben a rustos verzióval aminél 15 packaget kell használni hogy ugyanazt az élményt elérd (igen, megszámoltam)
 
 ## Filozófálás
