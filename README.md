@@ -13,23 +13,18 @@ Ez az egész egy tudatos döntés eredménye. Egy döntés a pragmatizmus (haszo
 - A sebesség a lényeg nem a rituálé, nem használunk bonyolult koncepciókat, ha van egyszerübb megoldás.
 
 ## Építés
-`dotnet build` - ez egy szimpla buildet hoz létre, ami nem *optimalizált*
+`dotnet run` - Futtatja az alkalmazást építés nélkül (ha változtattál valami nagyobbat akkor `dotnet clean` elötte, mert cacheböl tölt vissza szarokat)
 
-ha jobb *teljesítmény* kell, akkor építsd *AOT*-val
+Ha jobb *teljesítmény* kell, akkor építsd *AOT*-val
 ```shell
-dotnet publish -c Release /p:PublishAOT=true
+dotnet publish --self-contained tru -c Release /p:PublishAOT=true
 ```
-^ ez jobban le*optimalizál*ja, ha a sima builder nem lenne elég *gyors* még neked
-
-ha az kell h full buildet kapj ami fut barhol (ami linux) akkor hasznald ezt:
-```shell
-dotnet publish --self-contained true -r linux-x64 -c Release /p:PublishAOT=true
-```
+^ Ez jobban le*optimalizál*ja, ha a sima `dotnet build` nem lenne elég *gyors* még neked, valamint ebben benne lesz a dotnet runtime is. Ha kell specifikus rendszerre rakd bele a `-r linux-x64` argot a parancsba
 
 ## Fejlesztés
-megfogod és routesben csinálsz egy új .cs fájlt, és követed az egyik kész routeban lévő kódot, utánna Program.cs-be beimportálod ahogyan a többi is van.
+Megfogod és routesben csinálsz egy új .cs fájlt, és követed az egyik kész routeban lévő kódot, utánna Program.cs-be beimportálod ahogyan a többi is van.
 
-ha új json objectet csinálsz, amit returnolni kéne, akkor modelt kell rá írnod, mivel trimming alatt a lehet működő kódod szétbaszódhat
+Ha új json objectet csinálsz, amit returnolni kéne, akkor modelt kell rá írnod, mivel trimming alatt a lehet működő kódod szétbaszódhat
 
 shared mappában van pár service ami kell pl newsloader, ami becacheli startupnal a hireket, version cucc, stb.
 
