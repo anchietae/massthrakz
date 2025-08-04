@@ -6,6 +6,9 @@
 Literálisan azért írodott .NETben mert nem fogok fölöslegesen túlkomplikált (valakinek ez a szó ismerős lehet) borrow meg faszom tudja rendszerrel szarakodni rustban.
 > ^ Ja és ez dependency nélkül fut, ellentétben a rustos verzióval aminél 15 packaget kell használni hogy ugyanazt az élményt elérd (igen, megszámoltam)
 
+## Filozófálás
+Ez az egész egy tudatos döntés eredménye. Egy döntés a pragmatizmus (haszon) mellett a dogma (vakság) ellen, a hatékonyság mellett a szenvedés ellen.
+
 ## Építés
 `dotnet build` - ez egy szimpla buildet hoz létre, ami nem *optimalizált*
 
