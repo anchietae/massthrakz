@@ -9,6 +9,9 @@ Literálisan azért írodott .NETben mert nem fogok fölöslegesen túlkompliká
 ## Filozófálás
 Ez az egész egy tudatos döntés eredménye. Egy döntés a pragmatizmus (haszon) mellett a dogma (vakság) ellen, a hatékonyság mellett a szenvedés ellen.
 
+- A cél egy működő szar, nem a tökéletes kód. Epítünk, felmérünk, javítunk.
+- A sebesség a lényeg nem a rituálé, nem használunk bonyolult koncepciókat, ha van egyszerübb megoldás.
+
 ## Építés
 `dotnet build` - ez egy szimpla buildet hoz létre, ami nem *optimalizált*
 
