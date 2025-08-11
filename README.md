@@ -1,31 +1,29 @@
 # <img src="https://git.anchietae.cc/repo-avatars/ae9d4e114ed8458fc02025c395cb97616f641f9262aebcf8c2737df494807174" width="100px"> MassTHrakz!? *[ejtsd: massztrakz]*
-> ^ Mass, mert **masszív** request handlingra képes *kibaszott alacsony response timeval*...
+> ^ Mass, mert **masszív** request handlingra képes, figyelemre méltóan **alacsony válaszídővel**.
 
-*Kurva gyors* C# ASP.NET9.0 Coreban íródott API Szerver (Kréta fejlesztők megirigyelnék) egy bizonyos projekt appjához és oldalához *(Igen, ez az oldalhoz kellő dolgokat is támogatja. Mondtam már párszor hogy nem várok...)*
+*Nagy teljesítményű* C# ASP.NET 9.0 Core API Szerver egy bizonyos projekt appjához és oldalához. *(Igen, az oldalhoz szükséges végpontokat is tartalmazza. Mint mondtam, nem szeretek várni.)*
 
-Literálisan azért írodott .NETben mert nem fogok fölöslegesen túlkomplikált (valakinek ez a szó ismerős lehet) borrow meg faszom tudja rendszerrel szarakodni rustban. Az élet túl rövid ahhoz, hogy az ember a fordítót elégítse csak ki. Ez a kód az irányításról szól és nem a compilerröl.
-> ^ Ja és ez dependency nélkül fut, ellentétben a rustos verzióval aminél 15 packaget kell használni hogy ugyanazt az élményt elérd (igen, megszámoltam)
+Ez a szoftver *tudatosan* .NET-ben íródott, hogy elkerülje a feleslegesen *túlkomplikált* (valakinek ez a szó ismerős lehet) rendszerekkel való *időpazarlás*t. Az élet túl rövid ahhoz, hogy a fejlesztő a compilert elégítse ki. Ez a kód az irányításról szól, nem a compilerről.
+> ^ Ez a verzió natívan, külső függőségek nélkül fut. Ellentétben más implementációkkal, ahol legalább 15 csomagra van szükség ugyanehhez az eredményhez (igen, megszámoltam).
 
 ## Filozófálás
-Ez az egész egy tudatos döntés eredménye. Egy döntés a pragmatizmus (haszon) mellett a dogma (vakság) ellen, a hatékonyság mellett a szenvedés ellen.
+Ez az egész egy *tudatos döntés* eredménye. Egy döntés a pragmatizmus (haszon) mellett a dogma (vakság) ellen, a hatékonyság mellett a szenvedés ellen.
 
-- A cél egy működő szar, nem a tökéletes kód. Epítünk, felmérünk, javítunk.
-- A sebesség a lényeg nem a rituálé, nem használunk bonyolult koncepciókat, ha van egyszerübb megoldás.
+- A cél egy működő termék, nem a tökéletes kód hajszolása. Epítünk, felmérünk, javítunk.
+- A *haladás sebessége* a lényeg, nem a rituálé. Nem használunk bonyolult koncepciókat, ha létezik *egyszerűbb megoldás*.
 
 ## Építés
-`dotnet run` - Futtatja az alkalmazást építés nélkül (ha változtattál valami nagyobbat akkor `dotnet clean` elötte, mert cacheböl tölt vissza szarokat)
+`dotnet run` - Futtatja az alkalmazást. (Változtatások után egy `dotnet clean` javasolt a build cache miatt.)
 
-Ha jobb *teljesítmény* kell, akkor építsd *AOT*-val
+Ha a maximális *teljesítmény* a cél, építsd *AOT*-val:
 ```shell
 dotnet publish --self-contained tru -c Release /p:PublishAOT=true
 ```
-^ Ez jobban le*optimalizál*ja, ha a sima `dotnet build` nem lenne elég *gyors* még neked, valamint ebben benne lesz a dotnet runtime is. Ha kell specifikus rendszerre rakd bele a `-r linux-x64` argot a parancsba
+^ Ez natív kódra optimalizálja az alkalmazást, és a futtatókörnyezetet is tartalmazza. Specifikus rendszerhez add meg a `-r linux-x64` argumentumot.
 
 ## Fejlesztés
-Megfogod és routesben csinálsz egy új .cs fájlt, és követed az egyik kész routeban lévő kódot, utánna Program.cs-be beimportálod ahogyan a többi is van.
+Új route hozzáadásához hozz létre egy .cs fájlt a routes mappában a meglévő minta alapján, majd importáld a `Program.cs`-ben.
 
-Ha új json objectet csinálsz, amit returnolni kéne, akkor modelt kell rá írnod, mivel trimming alatt a lehet működő kódod szétbaszódhat
+JSON endpointokhoz mindig írj modellt, mivel a trimming (build-time optimalizáció) eltávolíthatja a dinamikusan felismert típusokat.
 
-shared mappában van pár service ami kell pl newsloader, ami becacheli startupnal a hireket, version cucc, stb.
-
-ajánlott az ilyen letöltős/fs loaderes szarokat cachelni, hogy ne basszuk fölöslegesen a rezet.
+A `shared` mappában találhatók a service-ek (hírbetöltő, verziókezelő stb.). Javasolt minden hálózati vagy fájlrendszer-művelet eredményét cache-elni a felesleges terhelés elkerülése végett.
